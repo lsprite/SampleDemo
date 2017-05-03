@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+     <dimen name="textsize10">10sp</dimen>
+    <dimen name="textsize12">12sp</dimen>
+    <dimen name="textsize14">14sp</dimen>
+    <dimen name="textsize16">16sp</dimen>
+    <dimen name="textsize18">18sp</dimen>
+    <dimen name="textsize20">20sp</dimen>
+    <dimen name="textsize22">22sp</dimen>
+    
+    <dimen name="querydetail_popupwindows_groupitem">12sp</dimen>
+    <dimen name="querydetail_popupwindows_contentitem">16sp</dimen>
+    
+    <dimen name="top_text">12sp</dimen>
+</resources>

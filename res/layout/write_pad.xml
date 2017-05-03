@@ -1,0 +1,70 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:greendroid="http://schemas.android.com/apk/res/com.cyrilmottier.android.gdcatalog"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"      android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:background="@color/blue" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="签名（签名请在空白处签名）"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize16" />
+
+        <Button
+            android:id="@+id/tablet_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/del" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/tablet_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" >
+    </RelativeLayout>
+    <!-- android:background="@android:drawable/bottom_bar" -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:gravity="center_vertical" >
+
+        <Button
+            android:id="@+id/tablet_clear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn1"
+            android:text="重新签名"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize16" />
+
+        <Button
+            android:id="@+id/tablet_ok"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn1"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize16" />
+    </LinearLayout>
+
+</LinearLayout>
