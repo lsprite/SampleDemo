@@ -117,7 +117,7 @@ public class WritePadDialog extends Dialog {
 
 			@Override
 			public void onClick(View v) {
-				cancel();
+				WritePadDialog.this.dismiss();
 			}
 		});
 	}

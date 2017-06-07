@@ -6,7 +6,6 @@ import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
 
 import android.text.TextUtils;
-import android.view.TextureView;
 
 /**
  * 国密SMS加密类 Created by hongyy on 2017/1/22.

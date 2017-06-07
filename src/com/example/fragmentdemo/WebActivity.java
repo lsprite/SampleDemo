@@ -1,7 +1,5 @@
 package com.example.fragmentdemo;
 
-import com.example.fragmentdemo.sll.SslPinningWebViewClient;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -15,8 +13,9 @@ import android.webkit.DownloadListener;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Toast;
+
+import com.example.fragmentdemo.sll.SslPinningWebViewClient;
 
 public class WebActivity extends Activity {
 	WebView webView;
@@ -34,17 +33,17 @@ public class WebActivity extends Activity {
 		Toast.makeText(this, "WebActivity", Toast.LENGTH_SHORT).show();
 		initView();
 		setWebView();
-		webView.loadUrl("http://192.168.1.27/xm_pwjk/Login.aspx");
-		// webView.loadUrl(getIntent().getStringExtra("url"));
-		// handler.postDelayed(new Runnable() {
-		//
-		// @Override
-		// public void run() {
-		// // TODO Auto-generated method stub
-		// webView.loadUrl("javascript: initdata('" + "img" + "','" + "李四"
-		// + "','" + "恭喜发财" + "')");
-		// }
-		// }, 1000);
+		// webView.loadUrl("http://192.168.1.27/xm_pwjk/Login.aspx");
+		webView.loadUrl(getIntent().getStringExtra("url"));
+		handler.postDelayed(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				webView.loadUrl("javascript: initdata('" + "img" + "','" + "李四"
+						+ "','" + "恭喜发财" + "')");
+			}
+		}, 1000);
 	}
 
 	@Override

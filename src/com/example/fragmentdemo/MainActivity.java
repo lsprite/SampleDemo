@@ -1,7 +1,5 @@
 package com.example.fragmentdemo;
 
-import com.example.fragmentdemo.util.AppInfoUtil;
-
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;

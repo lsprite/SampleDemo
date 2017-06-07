@@ -3,8 +3,6 @@ package com.example.fragmentdemo.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.cookie.Cookie;
-
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
