@@ -241,8 +241,10 @@ public class WritePadDialog extends Dialog {
 		ByteArrayOutputStream baos = null;
 		String _path = null;
 		try {
+			// String sign_dir = Environment.getExternalStorageDirectory()
+			// .getPath() + File.separator + "FZ_JMRJ/sign/";
 			String sign_dir = Environment.getExternalStorageDirectory()
-					.getPath() + File.separator + "FZ_JMRJ/sign/";
+					+ "/Android/data/" + context.getPackageName() + "/sign/";
 			if (!new File(sign_dir).exists()) {
 				new File(sign_dir).mkdirs();
 			}
