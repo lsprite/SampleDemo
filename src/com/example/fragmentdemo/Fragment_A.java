@@ -1,6 +1,8 @@
 package com.example.fragmentdemo;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -21,8 +23,8 @@ import android.widget.ImageView;
 import com.example.fragmentdemo.sll.HttpManager;
 import com.example.fragmentdemo.sll.HttpsUtil2;
 import com.example.fragmentdemo.util.MosaicProcessor;
-import com.example.fragmentdemo.util.PhoneUtil;
-import com.example.fragmentdemo.util.SMS4;
+import com.example.fragmentdemo.view.AudioRecorderButton;
+import com.example.fragmentdemo.view.AudioRecorderButton.StateChangeListener;
 import com.example.fragmentdemo.view.WritePadDialog;
 import com.example.fragmentdemo.view.WritePadDialog.DialogListener;
 
@@ -35,10 +37,27 @@ public class Fragment_A extends BaseFragment {
 		// TODO Auto-generated method stub
 		view = inflater.inflate(R.layout.fragment_a, container, false);
 		initView();
-		SMS4.test();
-		getInfo();
-		System.out.println(PhoneUtil.getPsdnIp());
+		// SMS4.test();
+		// getInfo();
+		// System.out.println(PhoneUtil.getPsdnIp());
+		doSU();
 		return view;
+	}
+
+	private void doSU() {
+		try {
+			Process process = Runtime.getRuntime().exec("su");// (这里执行是系统已经开放了root权限，而不是说通过执行这句来获得root权限)
+			DataOutputStream os = new DataOutputStream(
+					process.getOutputStream());
+			os.writeBytes("exit\n");
+			os.flush();
+			// 如果已经root，但是用户选择拒绝授权,e.getMessage() = write failed: EPIPE (Broken
+			// pipe)
+			// 如果没有root，,e.getMessage()= Error running exec(). Command: [su]
+			// Working Directory: null Environment: null
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void initView() {
@@ -81,6 +100,22 @@ public class Fragment_A extends BaseFragment {
 							}
 						});
 				writeTabletDialog.show();
+			}
+		});
+		AudioRecorderButton btn2 = (AudioRecorderButton) view
+				.findViewById(R.id.btn2);
+		btn2.setStateChangeListener(new StateChangeListener() {
+
+			@Override
+			public void start() {
+				// TODO Auto-generated method stub
+				System.out.println("---start");
+			}
+
+			@Override
+			public void end() {
+				// TODO Auto-generated method stub
+				System.out.println("---end");
 			}
 		});
 	}
