@@ -85,6 +85,13 @@ public class WebActivity extends Activity {
 	}
 
 	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		System.out.println("---WebActivity.onStop");
+	}
+
+	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		webView.setVisibility(View.GONE);
@@ -108,7 +115,7 @@ public class WebActivity extends Activity {
 		// 启用JS脚本
 		settings.setJavaScriptEnabled(true);
 		// 支持Html5 Video播放
-		// webView.getSettings().setJavaScriptEnabled(true);
+		webView.getSettings().setJavaScriptEnabled(true);
 		webView.getSettings().setPluginState(WebSettings.PluginState.ON);
 
 		webView.setWebChromeClient(m_chromeClient);
@@ -123,10 +130,31 @@ public class WebActivity extends Activity {
 				startActivity(intent);
 			}
 		});
-
 		// 网页控件显示
+		// webView.setWebViewClient(new WebViewClient() {
+		// public boolean shouldOverrideUrlLoading(WebView view, String url) {
+		// if (url.startsWith("tel:")) {
+		// Intent intent = new Intent(Intent.ACTION_VIEW, Uri
+		// .parse(url));
+		// startActivity(intent);
+		// } else {
+		// view.loadUrl(url); // 加载新的url
+		// }
+		// return true; // 返回true,代表事件已处理,事件流到此终止
+		// }
+		//
+		// @Override
+		// public void onPageStarted(WebView view, String url, Bitmap favicon) {
+		// super.onPageStarted(view, url, favicon);
+		//
+		// }
+		//
+		// @Override
+		// public void onPageFinished(WebView view, String url) {
+		// super.onPageFinished(view, url);
+		// }
+		// });
 		try {
-
 			webView.setWebViewClient(new SslPinningWebViewClient(
 					WebActivity.this) {
 				public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -166,12 +194,17 @@ public class WebActivity extends Activity {
 		public void onProgressChanged(WebView view, int newProgress) {
 			super.onProgressChanged(view, newProgress);
 		}
+
+		public void onPermissionRequest(android.webkit.PermissionRequest request) {
+			request.grant(request.getResources());
+		};
 	};
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		System.out.println("KEYCODE_BACK");
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			finish();
+			overridePendingTransition(0, 0);
 			return true;
 		}
 		return false;

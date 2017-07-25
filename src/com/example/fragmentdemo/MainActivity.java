@@ -1,5 +1,12 @@
 package com.example.fragmentdemo;
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -31,12 +38,19 @@ public class MainActivity extends FragmentActivity {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
+
 		setContentView(R.layout.activity_main);
 		fm = getSupportFragmentManager();
 		initView();
 		showFragment(selected);
 		// AppInfoUtil.getAppInfo(this);
+		ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);//
+		int phoneConstants = connectivityManager.startUsingNetworkFeature(
+				ConnectivityManager.TYPE_MOBILE, "enableMMS");
+		System.out.println("---phoneConstants:" + phoneConstants);
+		// NetworkInfo ni = connectivityManager.getActiveNetworkInfo();
+		// String apn = ni.getExtraInfo();// 获取网络接入点，这里一般为cmwap和cmnet
+		// System.out.println("---apn:" + apn);
 	}
 
 	@Override
@@ -45,6 +59,13 @@ public class MainActivity extends FragmentActivity {
 		// Log.v("LH", "onSaveInstanceState"+outState);
 		// super.onSaveInstanceState(outState);
 		// 将这一行注释掉，阻止activity保存fragment的状态
+	}
+
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		System.out.println("---MainActivity.onStop");
 	}
 
 	private void initView() {
@@ -122,4 +143,50 @@ public class MainActivity extends FragmentActivity {
 		return false;
 	}
 
+	// APN列表资源
+	protected static Uri APN_LIST_URI = Uri
+			.parse("content://telephony/carriers");
+	protected static Uri CURRENT_APN_URI = Uri
+			.parse("content://telephony/carriers/preferapn");
+
+	public int updateCurrentAPN(ContentResolver resolver, String newAPN) {
+		Cursor cursor = null;
+		try {
+			// get new apn id from list
+			cursor = resolver.query(APN_LIST_URI, null,
+					" apn = ? and current = 1",
+					new String[] { newAPN.toLowerCase() }, null);
+			String apnId = null;
+			if (cursor != null && cursor.moveToFirst()) {
+				apnId = cursor.getString(cursor.getColumnIndex("_id"));
+			}
+			cursor.close();
+			System.out.println("----apnId:" + apnId);
+			// set new apn id as chosen one
+			if (apnId != null) {
+				ContentValues values = new ContentValues();
+				values.put("apn_id", apnId);
+				resolver.update(CURRENT_APN_URI, values, null, null);
+				//
+				// // 通知apn已经更改
+				// IntentFilter upIntentFilter = new IntentFilter(
+				// ConnectivityManager.CONNECTIVITY_ACTION);
+				// registerReceiver(new NetworkChangeReceiver(),
+				// upIntentFilter);
+
+			} else {
+				// apn id not found, return 0.
+				return 0;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (cursor != null) {
+				cursor.close();
+			}
+		}
+
+		// update success
+		return 1;
+	}
 }

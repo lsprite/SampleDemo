@@ -1,7 +1,10 @@
 package com.example.fragmentdemo;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
 
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
@@ -13,6 +16,7 @@ public class MainApplication extends Application {
 	private static MainApplication instance;
 	// 避免http://blog.csdn.net/love100628/article/details/43238135提到的错误,在启动的activity里设置
 	private boolean isStartApp = true;
+	public int count = 0;
 
 	//
 	@Override
@@ -21,6 +25,61 @@ public class MainApplication extends Application {
 		System.out.println("MyApplication.onCreate()");
 		initImageLoader(getApplicationContext());
 		instance = this;
+		registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+
+			@Override
+			public void onActivityStopped(Activity activity) {
+				// TODO Auto-generated method stub
+				System.out.println("-----------onActivityStopped");
+				count--;
+				if (count == 0) {
+					Log.v("viclee", ">>>>>>>>>>>>>>>>>>>切到后台  lifecycle");
+				}
+			}
+
+			@Override
+			public void onActivityStarted(Activity activity) {
+				// TODO Auto-generated method stub
+				System.out.println("-----------onActivityStarted");
+				if (count == 0) {
+					Log.v("viclee", ">>>>>>>>>>>>>>>>>>>切到前台  lifecycle");
+				}
+				count++;
+
+			}
+
+			@Override
+			public void onActivitySaveInstanceState(Activity activity,
+					Bundle outState) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void onActivityResumed(Activity activity) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void onActivityPaused(Activity activity) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void onActivityDestroyed(Activity activity) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void onActivityCreated(Activity activity,
+					Bundle savedInstanceState) {
+				// TODO Auto-generated method stub
+
+			}
+		});
 	}
 
 	public static MainApplication getInstance() {

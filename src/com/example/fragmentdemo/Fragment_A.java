@@ -40,7 +40,7 @@ public class Fragment_A extends BaseFragment {
 		// SMS4.test();
 		// getInfo();
 		// System.out.println(PhoneUtil.getPsdnIp());
-		doSU();
+		// doSU();
 		return view;
 	}
 
@@ -81,8 +81,11 @@ public class Fragment_A extends BaseFragment {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(getActivity(), WebActivity.class);
-				intent.putExtra("url",
-						"file:///android_asset/html/honhbao.html");
+				// intent.putExtra("url",
+				// "file:///android_asset/html/honhbao.html");
+				intent.putExtra(
+						"url",
+						"https://jeromeetienne.github.io/AR.js/three.js/examples/mobile-performance.html");
 				startActivity(intent);
 			}
 		});
