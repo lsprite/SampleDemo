@@ -16,9 +16,10 @@ import android.webkit.WebView;
 import android.widget.Toast;
 
 import com.example.fragmentdemo.sll.SslPinningWebViewClient;
+import com.example.fragmentdemo.view.AdvancedWebView;
 
 public class WebActivity extends Activity {
-	WebView webView;
+	AdvancedWebView webView;
 	boolean isOnPause = false;
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -34,7 +35,8 @@ public class WebActivity extends Activity {
 		initView();
 		setWebView();
 		// webView.loadUrl("http://192.168.1.27/xm_pwjk/Login.aspx");
-		webView.loadUrl(getIntent().getStringExtra("url"));
+		webView.loadUrl("http://192.168.1.110/jzglService/test.docx");
+		// webView.loadUrl(getIntent().getStringExtra("url"));
 		handler.postDelayed(new Runnable() {
 
 			@Override
@@ -100,11 +102,10 @@ public class WebActivity extends Activity {
 
 	private void initView() {
 		// TODO Auto-generated method stub
-		webView = (WebView) findViewById(R.id.web_webview);
+		webView = (AdvancedWebView) findViewById(R.id.web_webview);
 	}
 
 	private void setWebView() {
-		webView = (WebView) findViewById(R.id.web_webview);
 		webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
 		// 设置WebView属性，能够执行Javascript脚本
 		WebSettings settings = webView.getSettings();

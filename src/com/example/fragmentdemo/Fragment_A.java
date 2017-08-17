@@ -105,6 +105,17 @@ public class Fragment_A extends BaseFragment {
 				writeTabletDialog.show();
 			}
 		});
+		Button btn3 = (Button) view.findViewById(R.id.btn3);
+		btn3.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(getActivity(),
+						CalendarActivity.class);
+				startActivity(intent);
+			}
+		});
 		AudioRecorderButton btn2 = (AudioRecorderButton) view
 				.findViewById(R.id.btn2);
 		btn2.setStateChangeListener(new StateChangeListener() {
