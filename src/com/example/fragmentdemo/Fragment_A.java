@@ -12,6 +12,7 @@ import javax.net.ssl.HttpsURLConnection;
 import org.apache.http.NameValuePair;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ import com.example.fragmentdemo.view.AudioRecorderButton;
 import com.example.fragmentdemo.view.AudioRecorderButton.StateChangeListener;
 import com.example.fragmentdemo.view.WritePadDialog;
 import com.example.fragmentdemo.view.WritePadDialog.DialogListener;
+import com.stericson.RootTools.RootTools;
 
 public class Fragment_A extends BaseFragment {
 	private View view;
@@ -41,6 +43,10 @@ public class Fragment_A extends BaseFragment {
 		// getInfo();
 		// System.out.println(PhoneUtil.getPsdnIp());
 		// doSU();
+		boolean isRootAvailable = RootTools.isRootAvailable();// 判断是否root
+		boolean isAccessGiven = RootTools.isAccessGiven();// 返回true那么手机已经root并且app也被授予root权限。
+		System.out.println("isRootAvailable:" + isRootAvailable);
+		System.out.println("isAccessGiven:" + isAccessGiven);
 		return view;
 	}
 
@@ -111,9 +117,16 @@ public class Fragment_A extends BaseFragment {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(getActivity(),
-						CalendarActivity.class);
+				// Intent intent = new Intent(getActivity(),
+				// CalendarActivity.class);
+				// startActivity(intent);
+				Uri packageURI = Uri.parse("package:" + "qzmcc.itc.moa");
+				// 创建Intent意图
+				Intent intent = new Intent(Intent.ACTION_DELETE);
+				intent.setData(packageURI);
+				// 执行卸载程序
 				startActivity(intent);
+
 			}
 		});
 		AudioRecorderButton btn2 = (AudioRecorderButton) view
