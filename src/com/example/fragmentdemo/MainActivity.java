@@ -2,10 +2,8 @@ package com.example.fragmentdemo;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
-import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -44,10 +42,11 @@ public class MainActivity extends FragmentActivity {
 		initView();
 		showFragment(selected);
 		// AppInfoUtil.getAppInfo(this);
-		ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);//
-		int phoneConstants = connectivityManager.startUsingNetworkFeature(
-				ConnectivityManager.TYPE_MOBILE, "enableMMS");
-		System.out.println("---phoneConstants:" + phoneConstants);
+		// ConnectivityManager connectivityManager = (ConnectivityManager)
+		// getSystemService(Context.CONNECTIVITY_SERVICE);//
+		// int phoneConstants = connectivityManager.startUsingNetworkFeature(
+		// ConnectivityManager.TYPE_MOBILE, "enableMMS");
+		// System.out.println("---phoneConstants:" + phoneConstants);
 		// NetworkInfo ni = connectivityManager.getActiveNetworkInfo();
 		// String apn = ni.getExtraInfo();// 获取网络接入点，这里一般为cmwap和cmnet
 		// System.out.println("---apn:" + apn);

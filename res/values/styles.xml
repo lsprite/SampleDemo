@@ -26,5 +26,9 @@
         <!-- <item name="android:backgroundDimEnabled">false</item> -->
         <item name="android:windowContentOverlay">@null</item>
     </style>
+    <style name="Animation_Toast" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/toast_enter</item>
+        <item name="android:windowExitAnimation">@anim/toast_exit</item>
+    </style>
 
 </resources>

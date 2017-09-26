@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.example.fragmentdemo.view.XToast;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -34,6 +38,21 @@ public class MainApplication extends Application {
 				count--;
 				if (count == 0) {
 					Log.v("viclee", ">>>>>>>>>>>>>>>>>>>切到后台  lifecycle");
+					Handler handler = new Handler(Looper.getMainLooper());
+					handler.post(new Runnable() {
+
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							XToast.makeText(
+									getApplicationContext(),
+									"“"
+											+ getResources().getString(
+													R.string.app_name)
+											+ "”已进入后台", XToast.LENGTH_SHORT)
+									.show();
+						}
+					});
 				}
 			}
 

@@ -22,6 +22,14 @@
 
 package com.stericson.RootTools.internal;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeoutException;
+import java.util.regex.Matcher;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -31,24 +39,14 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.util.Log;
 
-import com.stericson.RootTools.Constants;
 import com.stericson.RootShell.RootShell;
 import com.stericson.RootShell.execution.Command;
 import com.stericson.RootShell.execution.Shell;
+import com.stericson.RootTools.Constants;
 import com.stericson.RootTools.RootTools;
 import com.stericson.RootTools.containers.Mount;
 import com.stericson.RootTools.containers.Permissions;
 import com.stericson.RootTools.containers.Symlink;
-
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.LineNumberReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.concurrent.TimeoutException;
-import java.util.regex.Matcher;
 
 public final class RootToolsInternalMethods {
 
