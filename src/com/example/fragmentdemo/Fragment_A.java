@@ -11,6 +11,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 import org.apache.http.NameValuePair;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import android.widget.ImageView;
 import com.example.fragmentdemo.sll.HttpManager;
 import com.example.fragmentdemo.sll.HttpsUtil2;
 import com.example.fragmentdemo.util.MosaicProcessor;
+import com.example.fragmentdemo.util.UILUtils;
 import com.example.fragmentdemo.view.AudioRecorderButton;
 import com.example.fragmentdemo.view.AudioRecorderButton.StateChangeListener;
 import com.example.fragmentdemo.view.WritePadDialog;
@@ -69,16 +71,16 @@ public class Fragment_A extends BaseFragment {
 	private void initView() {
 		// TODO Auto-generated method stub
 		ImageView img = (ImageView) view.findViewById(R.id.img);
-		// UILUtils.displayImage(
-		// getActivity(),
-		// "http://10.jpg",
-		// img);
-		try {
-			img.setImageBitmap(MosaicProcessor.makeMosaic(null, null, 10));
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
+		UILUtils.displayImage(
+				getActivity(),
+				"https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png",
+				img);
+		// try {
+		// img.setImageBitmap(MosaicProcessor.makeMosaic(null, null, 10));
+		// } catch (Exception e) {
+		// // TODO: handle exception
+		// e.printStackTrace();
+		// }
 		//
 		Button btn = (Button) view.findViewById(R.id.btn);
 		btn.setOnClickListener(new OnClickListener() {
@@ -120,11 +122,15 @@ public class Fragment_A extends BaseFragment {
 				// Intent intent = new Intent(getActivity(),
 				// CalendarActivity.class);
 				// startActivity(intent);
-				Uri packageURI = Uri.parse("package:" + "qzmcc.itc.moa");
-				// 创建Intent意图
-				Intent intent = new Intent(Intent.ACTION_DELETE);
-				intent.setData(packageURI);
-				// 执行卸载程序
+				//
+				// Uri packageURI = Uri.parse("package:" + "qzmcc.itc.moa");
+				// // 创建Intent意图
+				// Intent intent = new Intent(Intent.ACTION_DELETE);
+				// intent.setData(packageURI);
+				// // 执行卸载程序
+				// startActivity(intent);
+				Intent intent = new Intent(
+						"com.ctrlosft.qzmcc_netassiant.LoginAuthorize");
 				startActivity(intent);
 
 			}
