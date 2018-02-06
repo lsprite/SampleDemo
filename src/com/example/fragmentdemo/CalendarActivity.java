@@ -3,6 +3,10 @@ package com.example.fragmentdemo;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.example.fragmentdemo.view.calendar.CalendarUtil;
+import com.example.fragmentdemo.view.calendar.CalendarView;
+import com.example.fragmentdemo.view.calendar.CalendarView.OnCalendarViewListener;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,10 +17,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-
-import com.example.fragmentdemo.view.calendar.CalendarUtil;
-import com.example.fragmentdemo.view.calendar.CalendarView;
-import com.example.fragmentdemo.view.calendar.CalendarView.OnCalendarViewListener;
 
 public class CalendarActivity extends Activity {
 	private CalendarView calendar;

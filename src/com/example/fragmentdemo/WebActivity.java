@@ -1,5 +1,8 @@
 package com.example.fragmentdemo;
 
+import com.example.fragmentdemo.sll.SslPinningWebViewClient;
+import com.example.fragmentdemo.view.AdvancedWebView;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,9 +17,6 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Toast;
-
-import com.example.fragmentdemo.sll.SslPinningWebViewClient;
-import com.example.fragmentdemo.view.AdvancedWebView;
 
 public class WebActivity extends Activity {
 	AdvancedWebView webView;
@@ -35,15 +35,15 @@ public class WebActivity extends Activity {
 		initView();
 		setWebView();
 		// webView.loadUrl("http://192.168.1.27/xm_pwjk/Login.aspx");
-		webView.loadUrl("http://192.168.1.110/jzglService/test.docx");
+		// webView.loadUrl("http://192.168.1.110/jzglService/test.docx");
+		webView.loadUrl("http://192.168.1.116/PTKDWebservice/html/3_pptx/3.html");
 		// webView.loadUrl(getIntent().getStringExtra("url"));
 		handler.postDelayed(new Runnable() {
 
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				webView.loadUrl("javascript: initdata('" + "img" + "','" + "李四"
-						+ "','" + "恭喜发财" + "')");
+				webView.loadUrl("javascript: initdata('" + "img" + "','" + "李四" + "','" + "恭喜发财" + "')");
 			}
 		}, 1000);
 	}
@@ -54,8 +54,7 @@ public class WebActivity extends Activity {
 		try {
 			if (isOnPause) {
 				if (webView != null) {
-					webView.getClass().getMethod("onResume")
-							.invoke(webView, (Object[]) null);
+					webView.getClass().getMethod("onResume").invoke(webView, (Object[]) null);
 				}
 				isOnPause = false;
 			}
@@ -70,8 +69,7 @@ public class WebActivity extends Activity {
 		super.onPause();
 		try {
 			if (webView != null) {
-				webView.getClass().getMethod("onPause")
-						.invoke(webView, (Object[]) null);
+				webView.getClass().getMethod("onPause").invoke(webView, (Object[]) null);
 				isOnPause = true;
 			}
 
@@ -123,8 +121,7 @@ public class WebActivity extends Activity {
 		webView.setDownloadListener(new DownloadListener() {
 
 			@Override
-			public void onDownloadStart(String url, String userAgent,
-					String contentDisposition, String mimetype,
+			public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype,
 					long contentLength) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
@@ -156,12 +153,10 @@ public class WebActivity extends Activity {
 		// }
 		// });
 		try {
-			webView.setWebViewClient(new SslPinningWebViewClient(
-					WebActivity.this) {
+			webView.setWebViewClient(new SslPinningWebViewClient(WebActivity.this) {
 				public boolean shouldOverrideUrlLoading(WebView view, String url) {
 					if (url.startsWith("tel:")) {
-						Intent intent = new Intent(Intent.ACTION_VIEW, Uri
-								.parse(url));
+						Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 						startActivity(intent);
 					}
 					view.loadUrl(url); // 加载新的url
@@ -169,8 +164,7 @@ public class WebActivity extends Activity {
 				}
 
 				@Override
-				public void onPageStarted(WebView view, String url,
-						Bitmap favicon) {
+				public void onPageStarted(WebView view, String url, Bitmap favicon) {
 					super.onPageStarted(view, url, favicon);
 
 				}

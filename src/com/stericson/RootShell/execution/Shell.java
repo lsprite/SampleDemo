@@ -36,10 +36,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
 
-import android.content.Context;
-
 import com.stericson.RootShell.RootShell;
 import com.stericson.RootShell.exceptions.RootDeniedException;
+
+import android.content.Context;
 
 public class Shell {
 

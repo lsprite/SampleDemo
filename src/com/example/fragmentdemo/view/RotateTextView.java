@@ -1,12 +1,12 @@
 package com.example.fragmentdemo.view;
 
+import com.example.fragmentdemo.R;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.widget.TextView;
-
-import com.example.fragmentdemo.R;
 
 public class RotateTextView extends TextView {
 	private static final int[] textDegree = new int[] { R.attr.degree,

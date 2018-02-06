@@ -24,13 +24,13 @@ package com.stericson.RootShell.execution;
 
 import java.io.IOException;
 
+import com.stericson.RootShell.RootShell;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-
-import com.stericson.RootShell.RootShell;
 
 public class Command {
 

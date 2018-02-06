@@ -1,5 +1,12 @@
 package com.example.fragmentdemo;
 
+import com.example.fragmentdemo.view.XToast;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
@@ -7,14 +14,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-import android.widget.Toast;
-
-import com.example.fragmentdemo.view.XToast;
-import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
-import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 public class MainApplication extends Application {
 	private static MainApplication instance;
@@ -44,13 +43,13 @@ public class MainApplication extends Application {
 						@Override
 						public void run() {
 							// TODO Auto-generated method stub
-							XToast.makeText(
-									getApplicationContext(),
-									"“"
-											+ getResources().getString(
-													R.string.app_name)
-											+ "”已进入后台", XToast.LENGTH_SHORT)
-									.show();
+							// XToast.makeText(
+							// getApplicationContext(),
+							// "“"
+							// + getResources().getString(
+							// R.string.app_name)
+							// + "”已进入后台", XToast.LENGTH_SHORT)
+							// .show();
 						}
 					});
 				}

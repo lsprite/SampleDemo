@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
+import com.example.fragmentdemo.util.JSHelper;
+
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.net.Uri;
@@ -15,8 +17,6 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
-import com.example.fragmentdemo.util.JSHelper;
 
 /**
  * Created by mennomorsink on 06/05/15.

@@ -3,11 +3,11 @@ package com.example.fragmentdemo.util;
 import java.io.File;
 import java.io.IOException;
 
-import android.content.Context;
-import android.os.Environment;
-
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.utils.L;
+
+import android.content.Context;
+import android.os.Environment;
 
 public class ImageLoaderTools {
 	public static String getDiscCachePathByUrl(Context context, String url) {

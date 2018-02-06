@@ -26,6 +26,11 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
 
+import com.stericson.RootShell.exceptions.RootDeniedException;
+import com.stericson.RootShell.execution.Command;
+import com.stericson.RootShell.execution.Shell;
+import com.stericson.RootTools.containers.Permissions;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -35,11 +40,6 @@ import android.os.Message;
 import android.os.StrictMode;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
-import com.stericson.RootShell.exceptions.RootDeniedException;
-import com.stericson.RootShell.execution.Command;
-import com.stericson.RootShell.execution.Shell;
-import com.stericson.RootTools.containers.Permissions;
 
 public class SanityCheckRootTools extends Activity {
     private ScrollView mScrollView;

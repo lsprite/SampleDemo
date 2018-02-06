@@ -78,34 +78,49 @@ containing a value of this type.
     }
     public static final class id {
         public static final int btn=0x7f090001;
-        public static final int btn1=0x7f090008;
-        public static final int btn2=0x7f09000a;
-        public static final int btn3=0x7f090009;
-        public static final int btn_a=0x7f090004;
-        public static final int btn_b=0x7f090005;
-        public static final int btn_b1=0x7f09000c;
-        public static final int btn_b2=0x7f09000d;
+        public static final int btn1=0x7f09000d;
+        public static final int btn2=0x7f09000f;
+        public static final int btn3=0x7f09000e;
+        public static final int btn_a=0x7f090007;
+        public static final int btn_b=0x7f090008;
+        public static final int btn_b1=0x7f090014;
+        public static final int btn_b2=0x7f090015;
+        public static final int button1=0x7f090018;
         public static final int calendar=0x7f090000;
-        public static final int fragment=0x7f090003;
-        public static final int img=0x7f09000b;
-        public static final int main=0x7f090006;
-        public static final int shape_id=0x7f090012;
-        public static final int tablet_cancel=0x7f09000e;
-        public static final int tablet_clear=0x7f090010;
-        public static final int tablet_ok=0x7f090011;
-        public static final int tablet_view=0x7f09000f;
+        public static final int fragment=0x7f090006;
+        public static final int img=0x7f090013;
+        public static final int lll=0x7f09000b;
+        public static final int main=0x7f090009;
+        public static final int owloading=0x7f09000c;
+        public static final int scale_pic_item=0x7f090019;
+        public static final int shape_id=0x7f09001e;
+        public static final int spin_city=0x7f090004;
+        public static final int spin_county=0x7f090005;
+        public static final int spin_province=0x7f090003;
+        public static final int spinner1=0x7f090010;
+        public static final int spinner2=0x7f090011;
+        public static final int spinner3=0x7f090012;
+        public static final int tablet_cancel=0x7f09001a;
+        public static final int tablet_clear=0x7f09001c;
+        public static final int tablet_ok=0x7f09001d;
+        public static final int tablet_view=0x7f09001b;
         public static final int tv=0x7f090002;
-        public static final int web_webview=0x7f090007;
+        public static final int webView1=0x7f090017;
+        public static final int web_webview=0x7f09000a;
+        public static final int webviewLinearLayout=0x7f090016;
     }
     public static final class layout {
         public static final int activity_calendar=0x7f030000;
-        public static final int activity_main=0x7f030001;
-        public static final int activity_web=0x7f030002;
-        public static final int fragment_a=0x7f030003;
-        public static final int fragment_b=0x7f030004;
-        public static final int fragment_b_1=0x7f030005;
-        public static final int fragment_b_2=0x7f030006;
-        public static final int write_pad=0x7f030007;
+        public static final int activity_city=0x7f030001;
+        public static final int activity_main=0x7f030002;
+        public static final int activity_web=0x7f030003;
+        public static final int fragment_a=0x7f030004;
+        public static final int fragment_b=0x7f030005;
+        public static final int fragment_b_1=0x7f030006;
+        public static final int fragment_b_2=0x7f030007;
+        public static final int playflash=0x7f030008;
+        public static final int scale_pic_item=0x7f030009;
+        public static final int write_pad=0x7f03000a;
     }
     public static final class string {
         public static final int app_name=0x7f070000;
@@ -119,11 +134,17 @@ containing a value of this type.
 
 
 
+
+
+
     
 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
+
+
+
 
 
 

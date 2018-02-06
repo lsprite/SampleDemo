@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import com.example.fragmentdemo.R;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
@@ -27,8 +29,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
-
-import com.example.fragmentdemo.R;
 
 /**
  * 日历控件，支持旧历、节气、日期标注、点击操作 （参考网络上的日历控件改写）

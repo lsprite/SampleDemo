@@ -1,5 +1,7 @@
 package com.example.fragmentdemo.view;
 
+import com.example.fragmentdemo.R;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -11,8 +13,6 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
-
-import com.example.fragmentdemo.R;
 
 public class XToast {
 	private Context mContext;

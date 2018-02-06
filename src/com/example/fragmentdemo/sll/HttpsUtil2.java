@@ -22,9 +22,9 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
-import android.content.Context;
-
 import com.example.fragmentdemo.MainApplication;
+
+import android.content.Context;
 
 public class HttpsUtil2 {
 
