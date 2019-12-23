@@ -149,7 +149,7 @@ public class WritePadDialog extends Dialog {
 			paint.setStyle(Paint.Style.STROKE);
 			paint.setColor(BRUSH_COLOR);
 			path = new Path();
-			// 高度剪掉100是因为除了签名的地方，顶部和底部设置死了各50dp，取得时候要去掉，要不然图片下部会有一段空白的地方
+			// 高度剪掉100是因为除了签名的地方，write_pad布局中顶部和底部设置死了各50dp，取得时候要去掉，要不然图片下部会有一段空白的地方
 			cachebBitmap = Bitmap.createBitmap((int) (p.width),
 					(int) (p.height) - dip2px(context, 100), Config.RGB_565);
 			cacheCanvas = new Canvas(cachebBitmap);

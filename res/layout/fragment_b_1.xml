@@ -31,4 +31,10 @@
         android:background="@drawable/sanjiao_white_shape"
         app:degree="-45" />
 
+    <com.example.fragmentdemo.view.ExitButton
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" />
+
 </RelativeLayout>

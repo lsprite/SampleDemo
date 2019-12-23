@@ -29,7 +29,6 @@ public class CalendarGridViewAdapter extends BaseAdapter {
 
 	/** 标注的日期 */
 	private List<Date> markDates;
-
 	private Context mContext;
 
 	private Calendar calToday = Calendar.getInstance(); // 今日
@@ -50,8 +49,7 @@ public class CalendarGridViewAdapter extends BaseAdapter {
 	}
 
 	// construct
-	public CalendarGridViewAdapter(Context context, Calendar cal,
-			List<Date> dates) {
+	public CalendarGridViewAdapter(Context context, Calendar cal, List<Date> dates) {
 		calStartDate = cal;
 		this.mContext = context;
 		titles = getDates();
@@ -86,8 +84,7 @@ public class CalendarGridViewAdapter extends BaseAdapter {
 		itemLayout.setGravity(Gravity.CENTER);
 		itemLayout.setOrientation(1);
 		itemLayout.setBackgroundColor(Color.WHITE);
-		itemLayout.setPadding(0, ViewUtil.dip2px(mContext, 5), 0,
-				ViewUtil.dip2px(mContext, 5));
+		itemLayout.setPadding(0, ViewUtil.dip2px(mContext, 5), 0, ViewUtil.dip2px(mContext, 5));
 		Date myDate = (Date) getItem(position);
 		itemLayout.setTag(myDate);
 		Calendar calCalendar = Calendar.getInstance();
@@ -95,8 +92,8 @@ public class CalendarGridViewAdapter extends BaseAdapter {
 
 		// 显示日期day
 		TextView textDay = new TextView(mContext);// 日期
-		LinearLayout.LayoutParams text_params = new LinearLayout.LayoutParams(
-				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+		LinearLayout.LayoutParams text_params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
+				LayoutParams.WRAP_CONTENT);
 		textDay.setGravity(Gravity.CENTER_HORIZONTAL);
 		int day = myDate.getDate(); // 日期
 		textDay.setText(String.valueOf(day));
@@ -105,8 +102,8 @@ public class CalendarGridViewAdapter extends BaseAdapter {
 
 		// 显示农历
 		TextView chineseDay = new TextView(mContext);
-		LinearLayout.LayoutParams chinese_params = new LinearLayout.LayoutParams(
-				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+		LinearLayout.LayoutParams chinese_params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
+				LayoutParams.WRAP_CONTENT);
 		chineseDay.setGravity(Gravity.CENTER_HORIZONTAL);
 		chineseDay.setTextSize(9);
 		CalendarUtil calendarUtil = new CalendarUtil(calCalendar);
@@ -119,34 +116,44 @@ public class CalendarGridViewAdapter extends BaseAdapter {
 		}
 
 		// 这里用于比对是不是比当前日期小，如果比当前日期小则显示浅灰色
-		if (!CalendarUtil.compare(myDate, calToday.getTime())) {
+		// SimpleDateFormat chineseDateFormat = new
+		// SimpleDateFormat("yyyy年MM月dd日");
+		// System.out.println("---" + chineseDateFormat.format(myDate));
+		if (!CalendarUtil.compareSameYearAndMouth(myDate, calStartDate)) {
 			itemLayout.setBackgroundColor(Color.argb(0xff, 0xee, 0xee, 0xee));
 			textDay.setTextColor(Color.argb(0xff, 0xc0, 0xc0, 0xc0));
 			chineseDay.setTextColor(Color.argb(0xff, 0xc0, 0xc0, 0xc0));
 		} else {
 			textDay.setTextColor(Color.argb(0xff, 0xc2, 0xa5, 0x3d));
 			chineseDay.setTextColor(Color.argb(0xff, 0x60, 0x3b, 0x07));
-			// 设置背景颜色
-			if (equalsDate(calSelected.getTime(), myDate)) {
-				// 选择的
-				itemLayout.setBackgroundColor(Color
-						.argb(0xff, 0xdc, 0xe2, 0xff));
-			} else {
-				if (equalsDate(calToday.getTime(), myDate)) {
-					// 当前日期faedda
-					itemLayout.setBackgroundColor(Color.argb(0xff, 0xfa, 0xed,
-							0xda));
-				}
-			}
+			itemLayout.setBackgroundColor(Color.argb(0xff, 0xfa, 0xed, 0xda));
 		}
+		// if (!CalendarUtil.compare(myDate, calToday.getTime())) {
+		// itemLayout.setBackgroundColor(Color.argb(0xff, 0xee, 0xee, 0xee));
+		// textDay.setTextColor(Color.argb(0xff, 0xc0, 0xc0, 0xc0));
+		// chineseDay.setTextColor(Color.argb(0xff, 0xc0, 0xc0, 0xc0));
+		// } else {
+		// textDay.setTextColor(Color.argb(0xff, 0xc2, 0xa5, 0x3d));
+		// chineseDay.setTextColor(Color.argb(0xff, 0x60, 0x3b, 0x07));
+		// // 设置背景颜色
+		// if (equalsDate(calSelected.getTime(), myDate)) {
+		// // 选择的
+		// itemLayout.setBackgroundColor(Color
+		// .argb(0xff, 0xdc, 0xe2, 0xff));
+		// } else {
+		// if (equalsDate(calToday.getTime(), myDate)) {
+		// // 当前日期faedda
+		// itemLayout.setBackgroundColor(Color.argb(0xff, 0xfa, 0xed,
+		// 0xda));
+		// }
+		// }
+		// }
 		/** 设置标注日期颜色 */
 		if (markDates != null) {
-			final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd",
-					Locale.CHINA);
+			final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
 			for (Date date : markDates) {
 				if (format.format(myDate).equals(format.format(date))) {
-					itemLayout.setBackgroundColor(Color.argb(0xff, 0xd3, 0x3a,
-							0x3a));
+					itemLayout.setBackgroundColor(Color.argb(0xff, 0xd3, 0x3a, 0x3a));
 					break;
 				}
 			}
@@ -161,8 +168,7 @@ public class CalendarGridViewAdapter extends BaseAdapter {
 
 	@SuppressWarnings("deprecation")
 	private Boolean equalsDate(Date date1, Date date2) {
-		if (date1.getYear() == date2.getYear()
-				&& date1.getMonth() == date2.getMonth()
+		if (date1.getYear() == date2.getYear() && date1.getMonth() == date2.getMonth()
 				&& date1.getDate() == date2.getDate()) {
 			return true;
 		} else {

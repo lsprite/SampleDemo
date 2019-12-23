@@ -6,6 +6,7 @@ import java.util.List;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
@@ -15,19 +16,16 @@ import android.util.Log;
 public class AppInfoUtil {
 	public static void getAppInfo(Context context) {
 		ArrayList<AppInfo> appList = new ArrayList<AppInfo>(); // 用来存储获取的应用信息数据
-		List<PackageInfo> packages = context.getPackageManager()
-				.getInstalledPackages(0);
+		List<PackageInfo> packages = context.getPackageManager().getInstalledPackages(0);
 
 		for (int i = 0; i < packages.size(); i++) {
 			PackageInfo packageInfo = packages.get(i);
 			AppInfo tmpInfo = new AppInfo();
-			tmpInfo.appName = packageInfo.applicationInfo.loadLabel(
-					context.getPackageManager()).toString();
+			tmpInfo.appName = packageInfo.applicationInfo.loadLabel(context.getPackageManager()).toString();
 			tmpInfo.packageName = packageInfo.packageName;
 			tmpInfo.versionName = packageInfo.versionName;
 			tmpInfo.versionCode = packageInfo.versionCode;
-			tmpInfo.appIcon = packageInfo.applicationInfo.loadIcon(context
-					.getPackageManager());
+			tmpInfo.appIcon = packageInfo.applicationInfo.loadIcon(context.getPackageManager());
 			// Only display the non-system app info
 			if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
 				appList.add(tmpInfo);// 如果非系统应用，则添加至appList
@@ -35,6 +33,24 @@ public class AppInfoUtil {
 			}
 
 		}
+	}
+
+	/**
+	 * 获取图标 bitmap
+	 * 
+	 * @param context
+	 */
+	public static synchronized Drawable getIcon(Context context) {
+		PackageManager packageManager = null;
+		ApplicationInfo applicationInfo = null;
+		try {
+			packageManager = context.getApplicationContext().getPackageManager();
+			applicationInfo = packageManager.getApplicationInfo(context.getPackageName(), 0);
+		} catch (PackageManager.NameNotFoundException e) {
+			applicationInfo = null;
+		}
+		Drawable d = packageManager.getApplicationIcon(applicationInfo); // xxx根据自己的情况获取drawable
+		return d;
 	}
 }
 

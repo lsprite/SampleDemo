@@ -1,6 +1,5 @@
 package com.example.fragmentdemo;
 
-import com.example.fragmentdemo.sll.SslPinningWebViewClient;
 import com.example.fragmentdemo.view.AdvancedWebView;
 
 import android.app.Activity;
@@ -16,6 +15,7 @@ import android.webkit.DownloadListener;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 public class WebActivity extends Activity {
@@ -36,7 +36,8 @@ public class WebActivity extends Activity {
 		setWebView();
 		// webView.loadUrl("http://192.168.1.27/xm_pwjk/Login.aspx");
 		// webView.loadUrl("http://192.168.1.110/jzglService/test.docx");
-		webView.loadUrl("http://192.168.1.116/PTKDWebservice/html/3_pptx/3.html");
+		// webView.loadUrl("http://192.168.1.116/PTKDWebservice/html/3_pptx/3.html");
+		webView.loadUrl("http://47.97.201.255:17003/spa/#/login");
 		// webView.loadUrl(getIntent().getStringExtra("url"));
 		handler.postDelayed(new Runnable() {
 
@@ -129,15 +130,37 @@ public class WebActivity extends Activity {
 			}
 		});
 		// 网页控件显示
-		// webView.setWebViewClient(new WebViewClient() {
+		webView.setWebViewClient(new WebViewClient() {
+			public boolean shouldOverrideUrlLoading(WebView view, String url) {
+				if (url.startsWith("tel:")) {
+					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+					startActivity(intent);
+				} else {
+					view.loadUrl(url); // 加载新的url
+				}
+				return true; // 返回true,代表事件已处理,事件流到此终止
+			}
+
+			@Override
+			public void onPageStarted(WebView view, String url, Bitmap favicon) {
+				super.onPageStarted(view, url, favicon);
+
+			}
+
+			@Override
+			public void onPageFinished(WebView view, String url) {
+				super.onPageFinished(view, url);
+			}
+		});
+		// try {
+		// webView.setWebViewClient(new
+		// SslPinningWebViewClient(WebActivity.this) {
 		// public boolean shouldOverrideUrlLoading(WebView view, String url) {
 		// if (url.startsWith("tel:")) {
-		// Intent intent = new Intent(Intent.ACTION_VIEW, Uri
-		// .parse(url));
+		// Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 		// startActivity(intent);
-		// } else {
-		// view.loadUrl(url); // 加载新的url
 		// }
+		// view.loadUrl(url); // 加载新的url
 		// return true; // 返回true,代表事件已处理,事件流到此终止
 		// }
 		//
@@ -152,31 +175,9 @@ public class WebActivity extends Activity {
 		// super.onPageFinished(view, url);
 		// }
 		// });
-		try {
-			webView.setWebViewClient(new SslPinningWebViewClient(WebActivity.this) {
-				public boolean shouldOverrideUrlLoading(WebView view, String url) {
-					if (url.startsWith("tel:")) {
-						Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-						startActivity(intent);
-					}
-					view.loadUrl(url); // 加载新的url
-					return true; // 返回true,代表事件已处理,事件流到此终止
-				}
-
-				@Override
-				public void onPageStarted(WebView view, String url, Bitmap favicon) {
-					super.onPageStarted(view, url, favicon);
-
-				}
-
-				@Override
-				public void onPageFinished(WebView view, String url) {
-					super.onPageFinished(view, url);
-				}
-			});
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		// } catch (Exception e) {
+		// // TODO: handle exception
+		// }
 	}
 
 	private WebChromeClient m_chromeClient = new WebChromeClient() {

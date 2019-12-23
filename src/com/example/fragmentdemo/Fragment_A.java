@@ -17,8 +17,7 @@ import org.apache.http.NameValuePair;
 import com.example.fragmentdemo.sll.HttpManager;
 import com.example.fragmentdemo.sll.HttpsUtil2;
 import com.example.fragmentdemo.util.HttpUtil;
-import com.example.fragmentdemo.util.MD5Util;
-import com.example.fragmentdemo.util.SMS4;
+import com.example.fragmentdemo.util.ToastUtil;
 import com.example.fragmentdemo.util.UILUtils;
 import com.example.fragmentdemo.util.WpsModel;
 import com.example.fragmentdemo.util.WpsModel.ClassName;
@@ -26,10 +25,10 @@ import com.example.fragmentdemo.util.WpsModel.OpenMode;
 import com.example.fragmentdemo.util.WpsModel.PackageName;
 import com.example.fragmentdemo.view.AudioRecorderButton;
 import com.example.fragmentdemo.view.AudioRecorderButton.StateChangeListener;
+import com.example.fragmentdemo.view.CircleImageView;
 import com.example.fragmentdemo.view.OWLoadingView;
 import com.example.fragmentdemo.view.WritePadDialog;
 import com.example.fragmentdemo.view.WritePadDialog.DialogListener;
-import com.stericson.RootTools.RootTools;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -44,6 +43,7 @@ import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class Fragment_A extends BaseFragment {
 	private View view;
@@ -53,22 +53,21 @@ public class Fragment_A extends BaseFragment {
 		// TODO Auto-generated method stub
 		view = inflater.inflate(R.layout.fragment_a, container, false);
 		initView();
-		System.out.println("0---" + SMS4.encodeSMS4toString("哎哟不错哦"));
-		System.out.println("1---" + SMS4.encodeSMS4toString("123456"));
-		System.out.println("2---" + SMS4.decodeSMS4toString("d0db05049297723e5779c397f1fc02da"));
-		System.out.println("3---" + SMS4.decodeSMS4toString("65fa2c5ad28eb7fe17a7917213ef7e85"));
-		// SMS4.test();
-		// getInfo();
-		// System.out.println(PhoneUtil.getPsdnIp());
-		// doSU();
-		boolean isRootAvailable = RootTools.isRootAvailable();// 判断是否root
-		boolean isAccessGiven = RootTools.isAccessGiven();// 返回true那么手机已经root并且app也被授予root权限。
-		System.out.println("isRootAvailable:" + isRootAvailable);
-		System.out.println("isAccessGiven:" + isAccessGiven);
-		System.out.println("---" + MD5Util.encrypt("哟哟不错哦"));
-		System.out.println("---" + MD5Util.encryption(
-				"secretapp_id100000000001formatxmlsign_methodmd5test_flag0time_stamp20170814152633version1.0secret"));
-		test();
+		// System.out.println("0---" + SMS4.encodeSMS4toString("哎哟不错哦"));
+		// System.out.println("1---" + SMS4.encodeSMS4toString("123456"));
+		// System.out.println("2---" +
+		// SMS4.decodeSMS4toString("d0db05049297723e5779c397f1fc02da"));
+		// System.out.println("3---" +
+		// SMS4.decodeSMS4toString("65fa2c5ad28eb7fe17a7917213ef7e85"));
+		// boolean isRootAvailable = RootTools.isRootAvailable();// 判断是否root
+		// boolean isAccessGiven = RootTools.isAccessGiven();//
+		// 返回true那么手机已经root并且app也被授予root权限。
+		// System.out.println("isRootAvailable:" + isRootAvailable);
+		// System.out.println("isAccessGiven:" + isAccessGiven);
+		// System.out.println("---" + MD5Util.encrypt("哟哟不错哦"));
+		// System.out.println("---" + MD5Util.encryption(
+		// "secretapp_id100000000001formatxmlsign_methodmd5test_flag0time_stamp20170814152633version1.0secret"));
+		// test();
 		return view;
 	}
 
@@ -90,9 +89,14 @@ public class Fragment_A extends BaseFragment {
 	ImageView img;
 	OWLoadingView owloading;
 	boolean isLoading = true;
+	CircleImageView image;
 
 	private void initView() {
 		// TODO Auto-generated method stub
+		image = (CircleImageView) view.findViewById(R.id.image);
+		// image.setImageResource(R.drawable.device);
+		image.setImageDrawable(getResources().getDrawable(R.drawable.device));
+		//
 		owloading = (OWLoadingView) view.findViewById(R.id.owloading);
 		owloading.setAutoStartAnim(true);// 设置自动开启动画
 		owloading.setOnClickListener(new OnClickListener() {
@@ -154,6 +158,10 @@ public class Fragment_A extends BaseFragment {
 				startActivity(intent);
 			}
 		});
+		//
+		TextView tv_res = (TextView) view.findViewById(R.id.tv_res);
+		tv_res.setText(android.os.Build.SERIAL);
+		//
 		Button btn1 = (Button) view.findViewById(R.id.btn1);
 		btn1.setOnClickListener(new OnClickListener() {
 
@@ -237,6 +245,15 @@ public class Fragment_A extends BaseFragment {
 			public void end() {
 				// TODO Auto-generated method stub
 				System.out.println("---end");
+			}
+		});
+		Button btn4 = (Button) view.findViewById(R.id.btn4);
+		btn4.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				ToastUtil.showToast(getActivity(), "Toast:" + Math.random());
 			}
 		});
 	}
